@@ -39,26 +39,48 @@ function App() {
     }
   };
 
+  const getBorderColor = (found: boolean) => (found ? 'green' : 'red');
+
   return (
     <div>
       <h1>Call Analyzer</h1>
-      <p>Enter Starting Phrase</p>
-      <input type="text" value={startPhrase} onChange={(e) => setStartPhrase(e.target.value)} />
-      <p>Enter Ending Phrase</p>
-      <input type="text" value={endPhrase} onChange={(e) => setEndPhrase(e.target.value)} />
-      <p>Upload MP3 File</p>
-      <input type="file" accept=".mp3,.wav,.ogg,.oga,.m4a,.mp4,.mpeg,.mpga,.webm" onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)} />
-      <button onClick={handleFetch}>Enter</button>
+      <div className='centered-row-container'>
+        <div className='centered-column-container'>
+          <p>Enter Starting Phrase</p>
+          <input type="text" value={startPhrase} onChange={(e) => setStartPhrase(e.target.value)} />
+        </div>
+        <div className='centered-column-container'>
+          <p>Enter Ending Phrase</p>
+          <input type="text" value={endPhrase} onChange={(e) => setEndPhrase(e.target.value)} />
+        </div>
+        <div className='centered-column-container'>
+          <p>Upload MP3 File</p>
+          <input type="file" accept=".mp3,.wav,.ogg,.oga,.m4a,.mp4,.mpeg,.mpga,.webm" onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)} />
+        </div>
+      </div>
+      <div className='centered-row-container'>
+        <button onClick={handleFetch}>Analyze</button>
+      </div>
 
       {loading && <p>Loading...</p>}
 
       {data && !loading && (
-        <div>
+        <div className='results-container'>
           <h2>Results</h2>
-          <div><strong>Start Phrase Found:</strong> {data.startPhraseFound ? 'Yes' : 'No'}</div>
-          <div><strong>End Phrase Found:</strong> {data.endPhraseFound ? 'Yes' : 'No'}</div>
-          <div><strong>Customer Sentiment:</strong> {data.custSentiment}</div>
-          <div><strong>Customer Sentiment Score:</strong> {data.custSentimentScore}</div>
+          <div
+            className='reslts-result-cont'
+            style={{ border: `2px solid ${getBorderColor(data.startPhraseFound)}` }}
+          >
+            <strong>Start Phrase Found:</strong> {data.startPhraseFound ? 'Yes' : 'No'}
+          </div>
+          <div
+            className='reslts-result-cont'
+            style={{ border: `2px solid ${getBorderColor(data.endPhraseFound)}` }}
+          >
+            <strong>End Phrase Found:</strong> {data.endPhraseFound ? 'Yes' : 'No'}
+          </div>
+          <div className='reslts-result-cont'><strong>Customer Sentiment:</strong> {data.custSentiment}</div>
+          <div className='reslts-result-cont'><strong>Customer Sentiment Score:</strong> {data.custSentimentScore}</div>
         </div>
       )}
     </div>
