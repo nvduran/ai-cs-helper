@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-// Define the type for your data
 interface CallData {
   startPhraseFound: boolean;
   endPhraseFound: boolean;
@@ -11,17 +10,31 @@ interface CallData {
 function App() {
   const [startPhrase, setStartPhrase] = useState('');
   const [endPhrase, setEndPhrase] = useState('');
-  const [data, setData] = useState<CallData | null>(null); // Initialize with the defined type
+  const [file, setFile] = useState<File | null>(null);
+  const [data, setData] = useState<CallData | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFetch = async () => {
-    if (startPhrase && endPhrase) {
+    if (startPhrase && endPhrase && file) {
+      const formData = new FormData();
+      formData.append('startPhrase', startPhrase);
+      formData.append('endPhrase', endPhrase);
+      formData.append('file', file);
+
+      setLoading(true);
+
       try {
-        const response = await fetch(`http://localhost:3104/calls/analyze?startPhrase=${encodeURIComponent(startPhrase)}&endPhrase=${encodeURIComponent(endPhrase)}`);
+        const response = await fetch('http://localhost:3104/calls/analyze', {
+          method: 'POST',
+          body: formData,
+        });
         const data: CallData = await response.json();
         setData(data);
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -33,9 +46,13 @@ function App() {
       <input type="text" value={startPhrase} onChange={(e) => setStartPhrase(e.target.value)} />
       <p>Enter Ending Phrase</p>
       <input type="text" value={endPhrase} onChange={(e) => setEndPhrase(e.target.value)} />
+      <p>Upload MP3 File</p>
+      <input type="file" accept=".mp3,.wav,.ogg,.oga,.m4a,.mp4,.mpeg,.mpga,.webm" onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)} />
       <button onClick={handleFetch}>Enter</button>
 
-      {data && (
+      {loading && <p>Loading...</p>}
+
+      {data && !loading && (
         <div>
           <h2>Results</h2>
           <div><strong>Start Phrase Found:</strong> {data.startPhraseFound ? 'Yes' : 'No'}</div>
