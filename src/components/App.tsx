@@ -42,7 +42,7 @@ function App() {
   const getBorderColor = (found: boolean) => (found ? 'green' : 'red');
 
   return (
-    <div>
+    <div className='big-centering-div'>
       <h1>Call Analyzer</h1>
       <div className='centered-row-container'>
         <div className='centered-column-container'>

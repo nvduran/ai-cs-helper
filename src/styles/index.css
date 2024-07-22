@@ -118,3 +118,11 @@ button:focus-visible {
   border-radius: 0.4rem;
   background-color: #4f4f4f4b;
 }
+
+.big-centering-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+}
