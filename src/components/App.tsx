@@ -59,7 +59,7 @@ function App() {
         </div>
       </div>
       <div className='centered-row-container'>
-        <button onClick={handleFetch}>Analyze</button>
+        <button onClick={handleFetch}>Analyze →</button>
       </div>
 
       {loading && <p>Loading...</p>}
@@ -67,6 +67,7 @@ function App() {
       {data && !loading && (
         <div className='results-container'>
           <h2>Results</h2>
+          <div className='centered-row-container'>
           <div
             className='reslts-result-cont'
             style={{ border: `2px solid ${getBorderColor(data.startPhraseFound)}` }}
@@ -79,8 +80,9 @@ function App() {
           >
             <strong>End Phrase Found:</strong> {data.endPhraseFound ? 'Yes' : 'No'}
           </div>
-          <div className='reslts-result-cont'><strong>Customer Sentiment:</strong> {data.custSentiment}</div>
-          <div className='reslts-result-cont'><strong>Customer Sentiment Score:</strong> {data.custSentimentScore}</div>
+          </div>
+          <div className='reslts-result-cont'><strong>Customer Sentiment Score:</strong> <h3>{data.custSentimentScore}</h3></div>
+          <div className='reslts-result-cont'><strong style={{width: "80%"}}>Customer Sentiment:</strong> {data.custSentiment}</div>
         </div>
       )}
     </div>

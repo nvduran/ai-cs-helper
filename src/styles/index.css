@@ -45,6 +45,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  padding-bottom: 1rem;
 }
 button:hover {
   border-color: #646cff;
@@ -97,6 +98,8 @@ button:focus-visible {
   margin: 0rem 1rem;
   padding: 1rem;
   border-radius: 0.4rem;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .results-container h2 {
@@ -114,9 +117,14 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 1rem 1rem;
   border-radius: 0.4rem;
   background-color: #4f4f4f4b;
+
+  h3 {
+    font-size: 1.5em;
+    padding: 0px;
+  }
 }
 
 .big-centering-div {
