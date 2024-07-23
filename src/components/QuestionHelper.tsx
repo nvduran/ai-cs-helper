@@ -39,7 +39,7 @@ function QuestionHelper() {
       setLoading(true);
   
       try {
-        const response = await fetch('http://localhost:3104/question/ask', {
+        const response = await fetch('http://192.168.1.109:3104/question/ask', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -56,6 +56,7 @@ function QuestionHelper() {
       }
     }
   };
+  
 
   return (
     <div className='big-centering-div'>
@@ -102,7 +103,7 @@ function QuestionHelper() {
         </div>
       )}
     </div>
-  );
+  ); 
 }
 
 export default QuestionHelper;

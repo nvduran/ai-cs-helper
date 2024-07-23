@@ -24,7 +24,7 @@ function App() {
       setLoading(true);
 
       try {
-        const response = await fetch('http://localhost:3104/calls/analyze', {
+        const response = await fetch('http://192.168.1.109:3104/calls/analyze', {
           method: 'POST',
           body: formData,
         });
