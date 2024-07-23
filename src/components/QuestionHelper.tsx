@@ -79,15 +79,15 @@ function QuestionHelper() {
               cols={50}
             ></textarea>
           </div>
-          <button onClick={() => handleRemoveArticle(index)}>Remove Article</button>
+          <button className='minor-button' onClick={() => handleRemoveArticle(index)}>Remove Article</button>
         </div>
       ))}
       <div className='centered-row-container'>
-        <button onClick={handleAddArticle}>Add Another Article</button>
+        <button className='minor-button' onClick={handleAddArticle}>Add Another Article</button>
       </div>
       <div className='centered-column-container'>
-        <p>Enter Your Question</p>
-        <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />
+        <p className='major-padding-side'>Enter Your Question</p>
+        <input type="text" className='wider-input' value={question} onChange={(e) => setQuestion(e.target.value)} />
       </div>
       <div className='centered-row-container'>
         <button onClick={handleFetch}>Get Answer →</button>

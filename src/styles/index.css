@@ -134,3 +134,22 @@ button:focus-visible {
   flex-direction: column;
   width: 100vw;
 }
+
+.minor-button {
+  background-color: #5c5c5c;
+  height: 1rem;
+  line-height: 1rem;
+  padding-bottom: 1.7rem;
+
+}
+
+.major-padding-side{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+}
+
+.wider-input {
+  width: 100%;
+}
